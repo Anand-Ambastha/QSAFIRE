@@ -1,0 +1,27 @@
+========================================================================
+SNS-TF-QKD Summary Report — mode: analytical
+========================================================================
+
+Parameters used:
+  fiber_loss                  = 0.2 dB/km
+  detector_efficiency         = 0.8
+  dark_count_rate              = 1e-11
+  error_correction_efficiency = 1.1
+  misalignment_error           = 0.15
+  visibility                   = 0.99
+
+Optimized parameters (at peak key rate):
+  distance   = 100.0 km
+  epsilon    = 0.499979
+  mu_signal  = 0.5
+  mu1        = 0.000100797
+  mu2        = 0.0649057
+
+Distance limit (last positive key rate): 1200.0 km
+Peak key rate : 4.731910e-03
+Peak gain     : 7.609942e-02
+Peak S_mu1    : 1.612730e-05
+Peak S_Z      : 3.881843e-02
+
+Runtime       : 23.38 s
+Simulation mode: analytical

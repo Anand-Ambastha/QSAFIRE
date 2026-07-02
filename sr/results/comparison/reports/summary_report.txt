@@ -1,0 +1,9 @@
+========================================================================
+SNS-TF-QKD Summary Report — mode: compare
+========================================================================
+
+Peak key rate (Analytical): 1.376842e-04
+Peak key rate (Monte Carlo): 1.347565e-04
+Max relative error in key rate: 558.0654%
+Runtime: 4.53 s
+Simulation mode: compare

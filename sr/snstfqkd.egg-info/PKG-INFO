@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: snstfqkd
+Version: 2.0.0
+Summary: Research-grade SNS-TF-QKD simulation package (analytical, Monte-Carlo, and protocol-level layers)
+Requires-Python: >=3.9
+Requires-Dist: numpy<3.0,>=1.24
+Requires-Dist: scipy>=1.10
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: pandas>=1.5
+Provides-Extra: test
+Requires-Dist: pytest>=7.0; extra == "test"
