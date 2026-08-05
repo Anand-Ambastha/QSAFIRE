@@ -11,6 +11,46 @@ Full documentation for both tasks is in
 `../Summer_Internship_Report_DRDO.pdf`, Chapters 2 and 3. This README is a
 navigation aid, not a replacement for that report.
 
+## Opening the OptiSystem Project
+
+1. Open the `.osd` project in OptiSystem.
+2. Double-click each MATLAB co-simulation block.
+3. Update the **Matlab search path** so it points to the local `matlab_cosim/` directory.
+
+> **Important**
+>
+> The MATLAB search path stored in the project is workstation-specific. Before running the simulation, replace it with the **absolute path** to the `matlab_cosim/` folder on your own machine.
+
+<p align="center">
+  <img src="docs/images/optisystem_search_path.png"
+       alt="MATLAB search path configuration in OptiSystem"
+       width="700">
+</p>
+
+The path shown in the screenshot is **only an example**.
+
+Replace:
+
+```text
+D:\drdo\osd\codes
+```
+
+with the absolute path to your local MATLAB source directory.
+
+**Example (Windows)**
+
+```text
+D:\drdo\osd\optisystem_prototype\matlab_cosim
+```
+
+**Example (Linux/macOS)**
+
+```text
+/home/user/OSD/optisystem_prototype/matlab_cosim
+```
+
+If this path is not updated correctly, OptiSystem will not be able to locate the MATLAB co-simulation scripts, and the simulation will fail.
+
 ## `optisystem_prototype/` — Task 1
 
 A three-station (Alice / Bob / Charlie) SNS-TF-QKD link built in OptiSystem,
