@@ -1,4 +1,4 @@
-# SNS-TF-QKD — Summer Internship, Scientific Analysis Group, DRDO
+# SNS-TF-QKD - Summer Internship, Scientific Analysis Group, DRDO
 
 **Anand Kumar** · B.Tech, Electronics and Communication Engineering, Bharati
 Vidyapeeth's College of Engineering · Summer Internship, June–August 2026,
