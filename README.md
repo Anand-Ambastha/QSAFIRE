@@ -1,7 +1,6 @@
 # SNS-TF-QKD - Summer Internship, Scientific Analysis Group, DRDO
 
-**Anand Kumar** · B.Tech, Electronics and Communication Engineering, Bharati
-Vidyapeeth's College of Engineering · Summer Internship, June–August 2026,
+**Anand Kumar** · B.Tech, Electronics and Communication Engineering· Summer Internship, June–August 2026,
 Scientific Analysis Group (SAG), DRDO, Metcalfe House, Delhi · Supervisor:
 Rajesh Kumar, Scientist 'E', SAG.
 
