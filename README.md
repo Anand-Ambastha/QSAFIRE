@@ -23,6 +23,7 @@ QSAFire/
 │   ├── optisystem_prototype/     #   Task 1: OptiSystem SNS-TF-QKD prototype + MATLAB co-sim
 │   └── preprocessing_pipeline/   #   Task 2: Python CSV post-processing pipeline
 ├── qsafire/                    # Task 3: independent satellite-link simulation framework
+├── literature/
 └── Summer_Internship_Report_DRDO.pdf
 ```
 
