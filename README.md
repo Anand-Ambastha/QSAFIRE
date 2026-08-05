@@ -18,7 +18,7 @@ one pipeline. No output of Task 1 or Task 2 feeds into Task 3, and this
 repository keeps that boundary visible rather than merging them:
 
 ```
-QSAFire-Impact-DRDO/
+QSAFire/
 ├── osd/                        # Task 1 + Task 2 (one path: OptiSystem -> Python pipeline)
 │   ├── optisystem_prototype/     #   Task 1: OptiSystem SNS-TF-QKD prototype + MATLAB co-sim
 │   └── preprocessing_pipeline/   #   Task 2: Python CSV post-processing pipeline
