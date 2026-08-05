@@ -66,7 +66,7 @@
 %   "a mu" and "a random draw" in a loose sense.
 %==========================================================================
 
-outputDirectory = 'D:\drdo\osd\optisystem_prototype\matlab_cosim';
+outputDirectory = 'D:\drdo\osd\optisystem_prototype\outputs';
 csvFileName     = fullfile(outputDirectory, 'bob_signal_record.csv');
 
 if exist('Parameter0', 'var') && ~isempty(Parameter0), P0  = Parameter0; else, P0  = 0.2;  end

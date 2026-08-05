@@ -44,8 +44,7 @@ if exist('Parameter1','var') && ~isempty(Parameter1)
 else
     StartWindowIndex = 1;
 end
-
-outputDirectory = 'D:\drdo\osd\optisystem_prototype\matlab_cosim';
+outputDirectory = 'D:\drdo\osd\optisystem_prototype\outputs';
 
 if ~exist(outputDirectory,'dir')
     mkdir(outputDirectory);

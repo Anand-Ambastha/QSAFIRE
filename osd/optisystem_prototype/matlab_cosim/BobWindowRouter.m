@@ -28,7 +28,7 @@
 %   Window_Index, Selected_Window
 %==========================================================================
 
-outputDirectory = 'D:\drdo\osd\optisystem_prototype\matlab_cosim';
+outputDirectory = 'D:\drdo\osd\optisystem_prototype\outputs';
 
 if ~exist(outputDirectory, 'dir')
     mkdir(outputDirectory);
