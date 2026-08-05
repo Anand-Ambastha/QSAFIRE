@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sns-tfqkd-fso"
+version = "0.1.0"
+description = "Modular reproduction of the SNS-TF-QKD protocol (Wang, Yu & Hu 2018) with a Free-Space-Optical / Gamma-Gamma turbulence extension."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "scipy>=1.10",
+    "tqdm>=4.65",
+    "streamlit>=1.30",
+]
+
+[tool.setuptools.packages.find]
+include = ["src*", "config*"]
