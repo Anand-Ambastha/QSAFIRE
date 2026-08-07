@@ -1,0 +1,48 @@
+SNS-TF-QKD over FSO with Gamma-Gamma Atmospheric Turbulence
+============================================================
+Generated: 2026-08-07T16:10:53.215720
+
+Fixed parameters:
+  Detector efficiency eta_d = 0.8
+  Dark count probability p_dark = 1e-11
+  Error-correction factor f_EC = 1.1
+  Decoy ratio mu1/mu2 = 0.2
+  Misalignment error e_a = 0.15
+  Deterministic FSO attenuation alpha = 0.43 dB/km
+  Wavelength = 1550 nm
+
+Turbulence case studies (Cn2, m^-2/3):
+  weak      : Cn2 = 5.0e-15
+  moderate  : Cn2 = 1.0e-14
+  strong    : Cn2 = 5.0e-14
+
+Distance grids:
+  Main (realistic FSO)  : 0.30 - 200.00 km one-way, 16 points
+  Extended (det. only)  : 0.30 - 250.00 km one-way, 22 points
+
+Maximum performance summary:
+                            Model    Max_SKR  Distance_at_Max_SKR_km  Max_Secure_Distance_km  Max_Tolerable_Loss_dB                                                                                                                           Note
+                Deterministic FSO 0.00120307                     0.3                  131.75                56.6525                                                                                                                               
+            Gamma-Gamma MC [weak] 0.00120868                     0.3                  14.841                6.38163 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+    Gamma-Gamma Quadrature [weak] 0.00120844                     0.3                  14.841                6.38163 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+        Gamma-Gamma MC [moderate] 0.00121436                     0.3                   9.621                4.13703 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma Quadrature [moderate] 0.00121384                     0.3                   9.621                4.13703 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+          Gamma-Gamma MC [strong] 0.00136468                   0.714                   4.043                1.73849 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+  Gamma-Gamma Quadrature [strong] 0.00135951                   0.714                   4.043                1.73849 secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+
+Quadrature validation (Part 4): max relative error vs Monte Carlo across all
+tested distances and 20/40/80-point quadratures: 0.4157% (target < 1%)
+
+Key qualitative findings:
+ 1. At the jointly-optimised operating point, R(eta) is locally CONVEX around
+    eta_det at short distances, so ensemble-averaged turbulence can transiently
+    RAISE the key rate above the deterministic reference (Jensen's inequality,
+    verified analytically and numerically - see Part 9 SKR figure discussion).
+ 2. The SNS protocol's key rate is extremely sensitive to the sending
+    probability epsilon; a naive choice (e.g. epsilon=0.05) yields NO secure
+    key at all, while the optimum sits in a narrow band around 0.02-0.03.
+ 3. Gamma-Gamma parameter alpha_g -> infinity, beta_g -> 1 as sigma_R^2 -> 
+    infinity (documented asymptotic feature of the Andrews-Phillips model);
+    handled numerically via a Gauss-Hermite fallback above shape parameter 150.
+ 4. Ensemble-optimal (eps*, mu'*) converge to the deterministic-optimal values
+    as distance grows and turbulence's relative influence on the optimum fades.

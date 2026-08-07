@@ -1,0 +1,8 @@
+Model,Max_SKR,Distance_at_Max_SKR_km,Max_Secure_Distance_km,Max_Tolerable_Loss_dB,Note
+Deterministic FSO,0.0012030689299183427,0.3,131.75,56.652499999999996,
+Gamma-Gamma MC [weak],0.0012086794798902604,0.3,14.841,6.3816299999999995,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma Quadrature [weak],0.0012084444253736668,0.3,14.841,6.3816299999999995,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma MC [moderate],0.001214359574540683,0.3,9.621,4.13703,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma Quadrature [moderate],0.00121383510188257,0.3,9.621,4.13703,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma MC [strong],0.0013646803464275805,0.714,4.043,1.73849,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
+Gamma-Gamma Quadrature [strong],0.0013595052614201065,0.714,4.043,1.73849,secure throughout simulated range - true cutoff lies beyond it; distance range truncated to sigma_R2<=25.0 (GG model validity)
