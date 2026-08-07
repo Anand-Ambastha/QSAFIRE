@@ -18,6 +18,7 @@ from src.fso.config import TURBULENCE_CASES, E_A, SECURE_THRESHOLD
 from src.fso.channel_models import (
     fso_deterministic_eta, channel_loss_dB, rytov_variance,
     gamma_gamma_params, classify_turbulence_regime, validity_flag,
+    sigma_R2_within_validity, SIGMA_R2_VALIDITY_MAX,
 )
 from src.fso.optimization import optimize_instantaneous, joint_optimize_ensemble
 from src.fso.quadrature import gauss_laguerre_ensemble_metrics
@@ -55,14 +56,32 @@ def build_gamma_gamma_table(distances_km, turbulence_cases=TURBULENCE_CASES, e_a
                 eps=eps_opt, mu=mu_opt, R_quad=m_quad["R"], R_mc=mc["mean"], R_mc_std=mc["std"],
                 R_mc_ci95_lo=mc["ci95_lo"], R_mc_ci95_hi=mc["ci95_hi"], Qxx=m_quad["Qxx"], Exx=m_quad["Exx"],
                 s1=m_quad["s1"], e1ph=m_quad["e1ph"], Sz=m_quad["Sz"], Ez=m_quad["Ez"], best_method=opt["best_method"],
+                within_validity=bool(sigma_R2_within_validity(sigma2)),
             ))
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    n_bad = int((~df["within_validity"]).sum())
+    if n_bad:
+        print(f"[build_gamma_gamma_table] WARNING: {n_bad}/{len(df)} rows have "
+              f"sigma_R2 > {SIGMA_R2_VALIDITY_MAX} (outside the Gamma-Gamma model's "
+              f"validity range - see channel_models.SIGMA_R2_VALIDITY_MAX). At these "
+              f"rows alpha_g/beta_g diverge unphysically and R_quad/R_mc will read as "
+              f"numerically identical to the deterministic channel; do not use them to "
+              f"draw GG-vs-deterministic comparisons. Filter on within_validity before "
+              f"computing headline statistics.")
+    return df
 
 
 def maximum_performance_summary(df_det, df_gg):
+    """NOTE: Gamma-Gamma rows with sigma_R2 beyond SIGMA_R2_VALIDITY_MAX are
+    excluded before summarising - at those distances alpha_g/beta_g diverge
+    unphysically and the GG channel numerically collapses onto the
+    deterministic one (see channel_models.gamma_gamma_params docstring), so
+    including them would silently bias Max_SKR / Max_Secure_Distance toward
+    "GG == deterministic" as an artifact of extrapolating the model past its
+    valid range rather than a real result."""
     rows = []
 
-    def _summarize(sub, model_name, r_col, loss_col="loss_dB", d_col="d_km"):
+    def _summarize(sub, model_name, r_col, loss_col="loss_dB", d_col="d_km", truncated=False):
         sub = sub.sort_values(d_col)
         i_max = sub[r_col].idxmax()
         max_R, d_at_max = sub.loc[i_max, r_col], sub.loc[i_max, d_col]
@@ -77,12 +96,22 @@ def maximum_performance_summary(df_det, df_gg):
                 note = ""
         else:
             max_secure_d, max_loss, note = np.nan, np.nan, "threshold not crossed anywhere in simulated distance range"
+        if truncated:
+            note = (note + "; " if note else "") + \
+                f"distance range truncated to sigma_R2<={SIGMA_R2_VALIDITY_MAX} (GG model validity)"
         rows.append(dict(Model=model_name, Max_SKR=max_R, Distance_at_Max_SKR_km=d_at_max,
                           Max_Secure_Distance_km=max_secure_d, Max_Tolerable_Loss_dB=max_loss, Note=note))
 
     _summarize(df_det, "Deterministic FSO", "R")
     for case in df_gg["turbulence_case"].unique():
-        sub = df_gg[df_gg["turbulence_case"] == case]
-        _summarize(sub, f"Gamma-Gamma MC [{case}]", "R_mc")
-        _summarize(sub, f"Gamma-Gamma Quadrature [{case}]", "R_quad")
+        sub_full = df_gg[df_gg["turbulence_case"] == case]
+        sub_valid = sub_full[sub_full["within_validity"]] if "within_validity" in sub_full.columns else sub_full
+        was_truncated = len(sub_valid) < len(sub_full)
+        if sub_valid.empty:
+            rows.append(dict(Model=f"Gamma-Gamma MC [{case}]", Max_SKR=np.nan, Distance_at_Max_SKR_km=np.nan,
+                              Max_Secure_Distance_km=np.nan, Max_Tolerable_Loss_dB=np.nan,
+                              Note=f"no rows within sigma_R2<={SIGMA_R2_VALIDITY_MAX} validity range"))
+            continue
+        _summarize(sub_valid, f"Gamma-Gamma MC [{case}]", "R_mc", truncated=was_truncated)
+        _summarize(sub_valid, f"Gamma-Gamma Quadrature [{case}]", "R_quad", truncated=was_truncated)
     return pd.DataFrame(rows)
