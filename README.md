@@ -1,7 +1,6 @@
-# SNS-TF-QKD — Summer Internship, Scientific Analysis Group, DRDO
+# SNS-TF-QKD - Summer Internship, Scientific Analysis Group, DRDO
 
-**Anand Kumar** · B.Tech, Electronics and Communication Engineering, Bharati
-Vidyapeeth's College of Engineering · Summer Internship, June–August 2026,
+**Anand Kumar** · B.Tech, Electronics and Communication Engineering· Summer Internship, June–August 2026,
 Scientific Analysis Group (SAG), DRDO, Metcalfe House, Delhi · Supervisor:
 Rajesh Kumar, Scientist 'E', SAG.
 
@@ -18,11 +17,12 @@ one pipeline. No output of Task 1 or Task 2 feeds into Task 3, and this
 repository keeps that boundary visible rather than merging them:
 
 ```
-QSAFire-Impact-DRDO/
+QSAFire/
 ├── osd/                        # Task 1 + Task 2 (one path: OptiSystem -> Python pipeline)
 │   ├── optisystem_prototype/     #   Task 1: OptiSystem SNS-TF-QKD prototype + MATLAB co-sim
 │   └── preprocessing_pipeline/   #   Task 2: Python CSV post-processing pipeline
 ├── qsafire/                    # Task 3: independent satellite-link simulation framework
+├── literature/
 └── Summer_Internship_Report_DRDO.pdf
 ```
 
