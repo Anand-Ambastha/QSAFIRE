@@ -272,7 +272,3 @@ This project was carried out as part of a Summer Internship at the
 Scientific Analysis Group (SAG), Defence Research and Development
 Organisation (DRDO).
 
-## License
-
-Add your preferred license here (e.g. MIT, Apache-2.0). No license is
-specified by default.
